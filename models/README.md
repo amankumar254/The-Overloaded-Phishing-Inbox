@@ -1,9 +1,9 @@
 # Trained model
 
-The application expects the trained text classification pipeline at:
+The repository includes the trained text classification pipeline used by the application:
 
-models/nlp_pipeline.joblib
+    models/nlp_pipeline.joblib
 
-The supplied local project contains this model file. It is not committed to this repository because the connected GitHub upload interface cannot reliably transfer the binary artifact.
+The application loads this model for NLP-based phishing risk analysis.
 
-Place the original nlp_pipeline.joblib file in this directory to run the application with the supplied trained model.
+If the model is retrained with train_model.py, the generated pipeline is saved to the same path.
