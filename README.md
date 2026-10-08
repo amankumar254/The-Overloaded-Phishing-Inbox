@@ -54,7 +54,7 @@ The URL analyzer checks for signals such as:
 
 ### Text analysis
 
-The text analyzer uses a TF-IDF and Logistic Regression pipeline trained on the supplied email dataset.
+The text analyzer uses a TF-IDF and Logistic Regression pipeline trained on the supplied CEAS 2008 email dataset.
 
 It also checks the email for groups of terms associated with:
 
@@ -98,9 +98,11 @@ The application is intended as a triage aid. It does not replace a full email se
     ├── .gitignore
     ├── README.md
     ├── data/
-    │   └── CEAS_08.csv
+    │   ├── CEAS_08.zip
+    │   └── README.md
     ├── models/
-    │   └── nlp_pipeline.joblib
+    │   ├── nlp_pipeline.joblib
+    │   └── README.md
     ├── static/
     │   └── style.css
     └── templates/
@@ -149,15 +151,21 @@ Start the application with:
 
 Then open the local address shown by Flask in your browser.
 
+The repository includes the trained NLP model at models/nlp_pipeline.joblib, so the application can use the supplied model without retraining it first.
+
 ## Training the text model
 
-The repository includes the training script used for the text classification pipeline.
+The repository includes the training script and the CEAS 2008 dataset archive used for the text classification pipeline.
 
-To retrain the model:
+Before retraining, extract data/CEAS_08.zip so that the CSV is available at:
+
+    data/CEAS_08.csv
+
+Then run:
 
     python train_model.py
 
-The script loads the labelled CSV data, performs preprocessing, creates TF-IDF features using unigrams and bigrams, trains a Logistic Regression classifier, evaluates the model, and saves the trained pipeline for inference.
+The script loads the labelled CSV data, performs preprocessing, creates TF-IDF features using unigrams and bigrams, trains a Logistic Regression classifier, evaluates the model, and saves the trained pipeline to models/nlp_pipeline.joblib.
 
 ## Model approach
 
@@ -185,9 +193,17 @@ The wider application then combines the text result with the header and URL anal
 
 ## Data
 
-The project uses the CEAS 2008 email dataset supplied with the project for text model training.
+The project uses the CEAS 2008 email dataset for text model training.
 
-The dataset is included in the local project under data/CEAS_08.csv.
+The compressed dataset archive is included in the repository at:
+
+    data/CEAS_08.zip
+
+Extract the archive to obtain:
+
+    data/CEAS_08.csv
+
+The included trained model can be used directly by the application without extracting the dataset. The dataset is required when retraining the text model.
 
 For a different dataset, update the training script and make sure the expected text and label fields are available.
 
@@ -238,15 +254,3 @@ The project was prepared for Microsoft Innovate 2026 at Bennett University.
 ## License
 
 Add the license that matches the intended distribution of the project before publishing the repository for wider reuse.
-
-
-## Repository note
-
-The original local project also contains two large generated/training artifacts:
-
-- data/CEAS_08.csv
-- models/nlp_pipeline.joblib
-
-They were kept in the supplied project package but are not stored in this GitHub repository because the connected GitHub upload interface available here cannot transfer those large binary and dataset files reliably.
-
-To reproduce the complete local project, keep those two files in the paths above. The rest of the application source and documentation is available in this repository.
