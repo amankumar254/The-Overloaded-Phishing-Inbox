@@ -1,9 +1,13 @@
 # Data
 
-The complete local project uses the CEAS 08 email dataset at:
+The repository includes the CEAS 2008 email dataset used for training the text classification model.
 
-data/CEAS_08.csv
+The dataset is stored as a compressed archive:
 
-The dataset is not committed to this repository because the connected GitHub upload interface cannot reliably transfer the full 67 MB CSV file.
+    data/CEAS_08.zip
 
-Place the original CEAS_08.csv file in this directory before running train_model.py.
+Extract the archive in this directory to obtain:
+
+    data/CEAS_08.csv
+
+The CSV file is required when running train_model.py to retrain the NLP model. The application itself does not need the CSV when using the supplied trained model in models/nlp_pipeline.joblib.
