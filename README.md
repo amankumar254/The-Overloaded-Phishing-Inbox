@@ -238,3 +238,15 @@ The project was prepared for Microsoft Innovate 2026 at Bennett University.
 ## License
 
 Add the license that matches the intended distribution of the project before publishing the repository for wider reuse.
+
+
+## Repository note
+
+The original local project also contains two large generated/training artifacts:
+
+- data/CEAS_08.csv
+- models/nlp_pipeline.joblib
+
+They were kept in the supplied project package but are not stored in this GitHub repository because the connected GitHub upload interface available here cannot transfer those large binary and dataset files reliably.
+
+To reproduce the complete local project, keep those two files in the paths above. The rest of the application source and documentation is available in this repository.
